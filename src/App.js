@@ -9,16 +9,10 @@ import StickyBox from "react-sticky-box/dist/esnext";
 
 import ShowProducts from "./Product/products";
 import Cart from "./cart/cart";
-// import { configureStore } from "./store/configureStore";
 import cartReducer from "./reducers/cartReducer";
 
 const useStyles = makeStyles(() => ({}));
 
-// const initialState = {
-//   products: [],
-// };
-
-// const store = createStore(cartReducer, initialState, applyMiddleware(thunk));
 const store = createStore(cartReducer, applyMiddleware(thunk));
 
 function App() {

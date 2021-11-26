@@ -18,7 +18,6 @@ import {
 const useStyles = makeStyles({
   root: {
     boxShadow: "0 18px 60px 0 rgba(15, 33, 37, 0.2)",
-    // width: "auto",
     display: "flex",
     justifyContent: "center",
   },
@@ -29,24 +28,12 @@ const useStyles = makeStyles({
   },
   price: {
     color: "black",
-    // textAlign: "left",
-    // fontWeight: "bold",
-    // fontSize: 24,
   },
 });
 
 const Product = (props) => {
   const classes = useStyles();
   const item = props;
-  const handleClick = (text) => {
-    // console.log("Categoty is: " + text);
-  };
-  const addToCart = (text) => {
-    console.log("Thsi Product is added to the cart: " + text);
-  };
-  const removToCart = (text) => {
-    console.log("Thsi Product is removed from the cart: " + text);
-  };
 
   return (
     <Grid
@@ -58,7 +45,7 @@ const Product = (props) => {
     >
       <Grid item xs={12}>
         <Card className={classes.root}>
-          <ButtonBase onClick={() => handleClick(item.title)}>
+          <ButtonBase>
             <CardActionArea>
               <CardActions>
                 <Grid

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@mui/styles";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import AddCircleIcon from "@mui/icons-material/AddCircle";

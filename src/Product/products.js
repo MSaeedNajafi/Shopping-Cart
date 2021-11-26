@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
-import Container from "@mui/material/Container";
 import Product from "./product";
 
 const useStyles = makeStyles(() => ({
