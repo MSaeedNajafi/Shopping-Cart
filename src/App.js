@@ -27,13 +27,7 @@ function App() {
           </Grid>
           <Grid item md={3} xs={12}>
             <StickyBox offsetTop={20} offsetBottom={20}>
-              <Grid
-                container
-                spacing={0}
-                direction="column"
-                alignItems="center"
-                justifyContent="center"
-              >
+              <Grid item xs container direction="column">
                 <Cart />
               </Grid>
             </StickyBox>

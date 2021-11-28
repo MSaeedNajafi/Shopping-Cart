@@ -26,9 +26,6 @@ const useStyles = makeStyles({
     height: 250,
     width: 250,
   },
-  price: {
-    color: "black",
-  },
 });
 
 const Product = (props) => {
@@ -58,7 +55,10 @@ const Product = (props) => {
                   <Button
                     size="large"
                     style={{ width: "10%", backgroundColor: "#345ee4" }}
-                    onClick={() => props.addProduct(item)}
+                    onClick={() => {
+                      // console.log("--->", item);
+                      props.addProduct(item);
+                    }}
                   >
                     <Typography
                       style={{
@@ -93,14 +93,29 @@ const Product = (props) => {
                 title="Contemplative Reptile"
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  style={{
+                    fontSize: 18,
+                    color: "#1b1b18",
+                    textAlign: "left",
+                    fontFamily: "Cursive,Poppins, sans-serif",
+                  }}
+                >
                   {item.title}
                 </Typography>
                 <Typography
                   variant="caption"
                   display="block"
                   gutterBottom
-                  style={{ color: "#345ee4" }}
+                  style={{
+                    color: "#1b1b18",
+                    textAlign: "left",
+                    fontSize: 14,
+                    fontFamily: "Cursive,Poppins, sans-serif",
+                  }}
                 >
                   {item.desc}
                 </Typography>
@@ -108,9 +123,14 @@ const Product = (props) => {
                   variant="body2"
                   color="textSecondary"
                   component="p"
-                  className={classes.price}
+                  style={{
+                    color: "#f76808",
+                    fontSize: 20,
+                    textAlign: "left",
+                    fontFamily: "Cursive,Poppins, sans-serif",
+                  }}
                 >
-                  € {item.price}
+                  € {item.price.toFixed(2)}
                 </Typography>
               </CardContent>
             </CardActionArea>

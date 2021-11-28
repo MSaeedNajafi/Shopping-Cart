@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import DeleteIcon from "@mui/icons-material/Delete";
+import AddCircleIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircleOutline";
+import DeleteIcon from "@mui/icons-material/DeleteOutline";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 import {
   removeProductFromCart,
@@ -22,6 +23,7 @@ const useStyles = makeStyles(() => ({
   },
   cart: {
     padding: "5px",
+    width: "100%",
     // marginBottom: 10,
   },
   total: {
@@ -31,7 +33,7 @@ const useStyles = makeStyles(() => ({
   },
   prods: {
     border: "1px solid #ccc",
-    marginBottom: 1,
+    marginBottom: 5,
   },
 }));
 
@@ -56,8 +58,9 @@ const Cart = (props) => {
           <div>
             <Typography
               style={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: "bold",
+                fontFamily: "Cursive, Poppins, sans-serif",
+                fontSize: 14,
+                // fontWeight: "bold",
               }}
               color="black"
             >
@@ -69,7 +72,8 @@ const Cart = (props) => {
           <div>
             <Typography
               style={{
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: "Cursive, Poppins, sans-serif",
+                fontSize: 14,
               }}
               color="textSecondary"
             >
@@ -78,7 +82,18 @@ const Cart = (props) => {
           </div>
         </Grid>
         <Grid item xs={10}>
-          <div>{product.title}</div>
+          <div>
+            <Typography
+              style={{
+                fontFamily: "Cursive, Poppins, sans-serif",
+                fontSize: 14,
+                color: "black",
+              }}
+              // color="textSecondary"
+            >
+              {product.title}
+            </Typography>
+          </div>
         </Grid>
         <Grid item xs={2}></Grid>
         <Grid item xs={7}>
@@ -111,12 +126,13 @@ const Cart = (props) => {
           <div>
             <Typography
               style={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: "bold",
+                fontFamily: "Cursive, Poppins, sans-serif",
+                // fontWeight: "bold",
+                fontSize: 14,
               }}
               color="black"
             >
-              €{productTotalPrice(product).toFixed(2)}
+              € {productTotalPrice(product).toFixed(2)}
             </Typography>
           </div>
         </Grid>
@@ -132,7 +148,7 @@ const Cart = (props) => {
   const countProducts = () => {
     return props.products
       .reduce((acc, current) => {
-        return parseFloat(acc + (current.quantity || 1));
+        return parseFloat(acc + current.quantity);
       }, 0)
       .toFixed(0);
   };
@@ -143,34 +159,96 @@ const Cart = (props) => {
       spacing={0}
       direction="column"
       alignItems="center"
-      justifyContent="center"
-      style={{ display: "flex" }}
+      // justifyContent="center"
+      // style={{ height: 910 }}
     >
-      <Grid item xs={12} className={classes.count}>
-        <Grid container justifyContent="center">
-          Cart ({countProducts()} products)
+      <Grid
+        item
+        xs={1}
+        className={classes.count}
+        // style={{ backgroundColor: "red" }}
+      >
+        <Grid
+          container
+          style={{ backgroundColor: "#0090ff" }}
+          justifyContent="center"
+        >
+          <p
+            style={{
+              color: "#fff",
+              fontSize: 18,
+              fontWeight: 600,
+              fontFamily: "Cursive",
+            }}
+          >
+            Winkelmandje ({countProducts()} products)
+          </p>
         </Grid>
       </Grid>
-      <Grid item xs={12} className={classes.cart}>
+      <Grid item xs={11} className={classes.cart}>
         {props.products.length ? (
-          props.products.map(showProduct)
+          <div>
+            {props.products.map(showProduct)}
+            <Grid
+              container
+              style={{ padding: 10 }}
+              alignSelf="flex-end"
+              justifyContent="space-between"
+            >
+              <p style={{ fontFamily: "Cursive" }}>Total Amount: </p>
+              <p style={{ fontFamily: "Cursive" }}>
+                € {props.products.reduce(calculateTotal, 0).toFixed(2)}
+              </p>
+            </Grid>
+            <Button
+              size="large"
+              style={{
+                width: "100%",
+                backgroundColor: "#f76808",
+                padding: 10,
+              }}
+              onClick={() => {}}
+            >
+              <Typography
+                style={{
+                  fontFamily: "Cursive,Poppins, sans-serif",
+                  color: "white",
+                  textTransform: "capitalize",
+                  fontSize: 18,
+                }}
+                color="textSecondary"
+              >
+                Afrekenen
+              </Typography>
+            </Button>
+          </div>
         ) : (
           <Grid
             container
             direction="column"
+            justifyContent="center"
             alignItems="center"
-            justifyContent="center"
-            justifyContent="center"
+            style={{ height: 700 }}
           >
             Shopping cart is empty.
           </Grid>
         )}
       </Grid>
-      <Grid item xs={12} className={classes.total}>
-        <Grid container alignSelf="flex-end" justifyContent="center">
+      {/* <Grid
+        // style={{ backgroundColor: "red" }}
+        item
+        xs={1}
+        className={classes.total}
+      >
+        <Grid
+          container
+          style={{ padding: 20 }}
+          alignSelf="flex-end"
+          justifyContent="center"
+        >
           Total Amount: €{props.products.reduce(calculateTotal, 0).toFixed(2)}
         </Grid>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 };
